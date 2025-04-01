@@ -5,6 +5,7 @@ import br.com.fiap.locadrive.locadrive.entities.Aluguel;
 import br.com.fiap.locadrive.locadrive.entities.Pessoa;
 import br.com.fiap.locadrive.locadrive.services.AluguelService;
 import br.com.fiap.locadrive.locadrive.services.PessoaService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,7 @@ public class AluguelController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> saveAluguel(@RequestBody AluguelRequestDTO aluguel) {
+    public ResponseEntity<Void> saveAluguel(@Valid @RequestBody AluguelRequestDTO aluguel) {
         logger.info("POST -> /alugueis");
         this.aluguelService.saveAluguel(aluguel);
         return ResponseEntity.status(201).build();
