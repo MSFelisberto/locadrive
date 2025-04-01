@@ -1,5 +1,6 @@
 package br.com.fiap.locadrive.locadrive.controllers;
 
+import br.com.fiap.locadrive.locadrive.dtos.AluguelRequestDTO;
 import br.com.fiap.locadrive.locadrive.entities.Aluguel;
 import br.com.fiap.locadrive.locadrive.entities.Pessoa;
 import br.com.fiap.locadrive.locadrive.services.AluguelService;
@@ -42,7 +43,7 @@ public class AluguelController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> saveAluguel(@RequestBody Aluguel aluguel) {
+    public ResponseEntity<Void> saveAluguel(@RequestBody AluguelRequestDTO aluguel) {
         logger.info("POST -> /alugueis");
         this.aluguelService.saveAluguel(aluguel);
         return ResponseEntity.status(201).build();

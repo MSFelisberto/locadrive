@@ -21,7 +21,7 @@ public class AluguelRepositoryImp implements AluguelRepository {
     public Optional<Aluguel> findById(Long id) {
         return this.jdbcClient
                 .sql("SELECT a.id, a.pessoa_id, a.veiculo_id, a.data_inicio, a.data_fim, a.valor_total, " +
-                        "p.nome AS pessoa_nome, p.cpf AS pessoa_cpf, v.model AS veiculo_modelo, v.placa AS veiculo_placa " +
+                        "p.nome AS pessoa_nome, p.cpf AS pessoa_cpf, v.modelo AS veiculo_modelo, v.placa AS veiculo_placa " +
                         "FROM alugueis a " +
                         "JOIN pessoas p ON a.pessoa_id = p.id " +
                         "JOIN veiculos v on a.veiculo_id = v.id " +
@@ -35,7 +35,7 @@ public class AluguelRepositoryImp implements AluguelRepository {
     public List<Aluguel> findAll(int size, int offset) {
         return this.jdbcClient
                 .sql("SELECT a.id, a.pessoa_id, a.veiculo_id, a.data_inicio, a.data_fim, a.valor_total, " +
-                        "p.nome AS pessoa_nome, p.cpf AS pessoa_cpf, v.model AS veiculo_modelo, v.placa AS veiculo_placa " +
+                        "p.nome AS pessoa_nome, p.cpf AS pessoa_cpf, v.modelo AS veiculo_modelo, v.placa AS veiculo_placa " +
                         "FROM alugueis a " +
                         "JOIN pessoas p ON a.pessoa_id = p.id " +
                         "JOIN veiculos v on a.veiculo_id = v.id " +
