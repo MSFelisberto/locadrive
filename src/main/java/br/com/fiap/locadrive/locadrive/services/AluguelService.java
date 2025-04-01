@@ -6,6 +6,7 @@ import br.com.fiap.locadrive.locadrive.entities.Pessoa;
 import br.com.fiap.locadrive.locadrive.repositories.AluguelRepository;
 import br.com.fiap.locadrive.locadrive.repositories.PessoaRepository;
 import br.com.fiap.locadrive.locadrive.repositories.VeiculoRepository;
+import br.com.fiap.locadrive.locadrive.services.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -31,7 +32,7 @@ public class AluguelService {
     }
 
     public Optional<Aluguel> findAluguelById(Long id) {
-        return this.aluguelRepository.findById(id);
+        return Optional.ofNullable(this.aluguelRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Aluguel não encontrado")));
     }
 
     public void saveAluguel(AluguelRequestDTO aluguel) {
@@ -42,16 +43,16 @@ public class AluguelService {
 
     public void updateAluguel(Aluguel aluguel, Long id) {
         var update = this.aluguelRepository.update(aluguel, id);
-        if(update == 0) {
+        if (update == 0) {
             throw new RuntimeException("Nenhuma aluguel foi atualizado ou encontrado");
-        };
+        }
     }
 
     public void deleteAluguel(Long id) {
         var delete = this.aluguelRepository.delete(id);
-        if(delete == 0) {
+        if (delete == 0) {
             throw new RuntimeException("Nenhuma aluguel foi deletado ou encontrado");
-        };
+        }
     }
 
     private Aluguel calculaAluguel(AluguelRequestDTO aluguelRequestDTO) {
